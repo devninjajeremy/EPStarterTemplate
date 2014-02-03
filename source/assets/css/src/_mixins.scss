@@ -1,0 +1,295 @@
+//rotate element to whatever degree needed
+@mixin rotate__element($degree) 
+{
+	transform:rotate($degree);
+	-ms-transform:rotate($degree); /* IE 9 */
+	-webkit-transform:rotate($degree); /* Safari and Chrome */
+	-moz-transform:rotate($degree);
+}
+
+//flip image horizontally
+//options are 
+//H => Horizontal
+//V => Vertical
+@mixin flip__img($direction)
+{
+	@if $direction == 'H' {
+		-moz-transform: scaleX(-1);
+	    -o-transform: scaleX(-1);
+	    -webkit-transform: scaleX(-1);
+	    transform: scaleX(-1);
+	    filter: FlipH;
+	    -ms-filter: "FlipH";
+	}@else {
+		-moz-transform: scaleY(-1);
+		-o-transform:scaleY(-1);
+		-webkit-transform:scaleY(-1);
+		transform:scaleY(-1);
+		filter:FlipV;
+		-ms-filter:"FlipV";
+	}
+}
+
+//use this function to give text 
+//opacity over an element. this is
+//useful for design purposes.
+@function color__rgba($red, $green, $blue, $alpha)
+{
+	//pass any rgba values to this 
+	//function and it will return
+	//the correct rgba syntax
+	//example: rgba(255,255,255,1);
+	@return rgba($red, $green, $blue, $alpha);
+}
+
+//pass this function any pixel 
+//font size and it will return
+//the equivelant em size;
+@function em($px, $font-size:$font-size)
+{
+	@return ($px / $font-size) * 1em;
+}
+
+//box shadow
+//drop shadow on any box element with text
+//h-shadow v-shadow blur spread color inset;
+//box-shadow: h-shadow v-shadow blur spread color inset;
+@mixin box__shadow($h__shadow:2px,$v__shadow:2px, $blur:5px, $spread:5px, $color:rgba(0,0,0,0.7))
+{
+	-webkit-box-shadow:$h__shadow $v__shadow $blur $spread $color;
+	box-shadow:$h__shadow $v__shadow $blur $spread $color;
+}
+
+//text shadow
+//text shadow on any element with text
+//text-shadow: h-shadow v-shadow blur color;
+@mixin text__shadow($h__shadow: 3px,$v__shadow: 3px, $blur: 5px, $color: rgba(0,0,0,0.7))
+{
+	text-shadow:$h__shadow $v__shadow $blur $color;
+}
+
+//border radius is for the curve
+//borders on elements
+@mixin border__radius($radius:5px)
+{
+	-webkit-border-radius:$radius;
+	border-radius:$radius;
+	background-clip:padding-box;
+}
+
+//border top radius
+//use: border-top-radius(10px)
+//outputs only border top elements
+@mixin border__top__radius($radius:5px) 
+{
+	-webkit-border-top-right-radius:$radius;
+	border-top-right-radius:$radius;
+	-webkit-border-top-left-radius:$radius;
+	border-top-left-radius:$radius;
+	background-clip:padding-box;
+}
+
+//border right radius
+//use: border-right-radius(10px);
+//outputs only border right elements
+@mixin border__right__radius($radius:5px)
+{
+	-webkit-border-bottom-right-radius:$radius;
+	-webkit-border-top-right-radius:$radius;
+	border-top-right-radius:$radius;
+	border-bottom-right-radius:$radius;
+	background-clip:padding-box;
+}
+
+//border botto radius
+//use: border-bottom-radius(10px);
+//outputs only border bottom radius
+@mixin border__bottom__radius($radius:5px)
+{
+	-webkit-border-bottom-right-radius:$radius;
+	-webkit-border-bottom-left-radius:$radius;
+	border-bottom-right-radius:$radius;
+	border-bottom-left-radius:$radius;
+	background-clip:padding-box;
+}
+
+//border left radius
+//use: border-left-radius(10px);
+//outputs only border left radius elements
+@mixin border__left__radius($radius:5px)
+{
+	-webkit-border-bottom-left-radius:$radius;
+	-webkit-border-top-left-radius:$radius;
+	border-bottom-left-radius:$radius;
+	border-top-left-radius:$radius;
+	background-clip:padding-box;
+}
+
+//clearfix hack that prevents ugly random
+//floating element mishaps when using
+//tableless designs. 
+@mixin clearfix {
+	&:before,&:after 
+	{
+		content:"";
+		display:table;
+	}
+	&:after {
+		clear:both;
+	}
+	zoom:1;
+}
+
+//Absolutely position an element. This will
+//generate a element to be aboslutely position
+//inside its parent element.
+@mixin position__absolute($t:auto,$r:auto,$b:auto,$l:auto)
+{
+	position:absolute;
+	top:$t;
+	right:$r;
+	bottom:$b;
+	left:$l;
+}
+
+//this will position a element fixed and also give the element
+//width and height of 100% by default.
+@mixin position__fixed($t:auto,$r:auto,$b:auto,$l:auto,$width:100%,$height:100%)
+{
+	position:fixed;
+	top:$t;
+	right:$r;
+	bottom:$b;
+	left:$l;
+	width:$width;
+	height:$height;
+}
+
+//This will take the link color and
+//automatically generate another color
+//lighter than the given color for the
+//hover,active,visited and focus states
+@mixin link__color($rgba) {
+	color:rgba($rgba);
+	&:hover,&:active,&:visited,&:focus {
+		color:lighten(rgba($rgba),20%);
+	}
+}
+
+//centers a element on the screen
+//must define width before include
+//example:
+//.footer-wrap {width:450px; @include center__block;}
+@mixin center__block{
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+
+//This mixin lets us write out vendor prefixing
+//quickly and efficiently. Supported vendor prefixes
+//can be seen at http://peter.sh/experiments/vendor-prefixed-css-property-overview/
+@mixin css3($property,$value) 
+{
+	//for example css3(transition,0.5s)
+	//will output:
+	//-webkit-transition:0.5s
+	//-moz-transition:0.5s
+	//-ms-transition:0.5s
+	//-o-transition:0.5s
+	//transition:0.5s;
+	@each $prefix in -webkit-,-moz-,-ms-,-o-,"" {
+		#{$prefix}#{$property}:$value;
+	}
+}
+
+//Text overflow
+//truncates text with an elipsis.
+//requires the element to be block or inline-block
+@mixin text__truncate {
+	overflow:hidden;
+	text-overflow:ellipsis;
+	white-space:nowrap;
+}
+
+//Line Hight
+//sets the line height in rem's with a px fallback
+@mixin line__height($height__value:12) {
+	line-height:$height__value + px; //fallback for old browsers
+	line-height:(0.125 * $height__value) + rem;
+}
+
+//this will include the microsoft
+//filter attributes for opacity so you
+//wont have to write it out.
+@mixin opacity($opacity)
+{
+	opacity:$opacity;
+	$opacityIE:$opacity * 100;
+	filter:alpha(opacity=$opacityIE);
+}
+
+//We often use the units of % or em to set font sizes.
+//The rem font size unit is similar to em, only instead
+//of cascading its always relative to the html element
+//(root). That means that we can define a single font size
+//on the html element and define all rem units to be a %
+//of that. Maybe you've seen this units because wordpress 
+//default theme in 2012, twenty twelve used it.
+//
+//This has good modern browser support but it doesn't
+//support IE8 so we have to provide the px fallbacks.
+@mixin fontsize($size:24, $base:16) 
+{
+	font-size: $size + px;
+	font-size:($size / $base) * 1rem;
+}
+
+//this mixin helps make the text more legible.
+//it adds a small shadow on the text so that the
+//background wont contrast to make the text hard
+//to read.
+@mixin text__inset($color,$opacity:0.7) 
+{
+	@if lightness($color) < 50% {
+		//if the text color is a dark color
+		//we need a white shadow, bottom, right
+		text-shadow:1px 1px 1px rgba(255,255,255,$opacity);
+	} @else {
+		//else it must be light so we need
+		//a black shadow, top, left
+		text-shadow: -1px -1px 1px rgba(0,0,0, $opacity);
+	}
+
+	color:$color;
+}
+
+//include this mixin on any ul for nativation and it will
+//automatically generate the code to default the ul to be
+//a list nav. of course you will need to generate some
+//other code if its needed like any images needed etc.
+@mixin horizontal__navigation__ul($width:100%,$link_color:$black,$link_bg_color:$white,$link_padding:1em,$link_spacing:5px)
+{
+	width:$width;
+	display:block;
+	padding:0;margin:0;
+	li {
+		display:inline;
+		a {
+			float:left;
+			margin-right:$link_spacing;
+			padding:$link_padding;
+			background-color:$link_bg_color;
+			text-decoration:none;
+			@include linkColor($link_color);
+			&:hover {
+				text-decoration:none;
+			}
+		}
+		&:last-child {
+			a {
+				margin-right:0;
+			}
+		}
+	}
+}

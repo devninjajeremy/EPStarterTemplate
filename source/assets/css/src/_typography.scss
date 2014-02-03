@@ -1,0 +1,429 @@
+//ALL CLASSES ARE IN ALPHABETICAL ORDER FOR EASY FIND
+//ORDERED BY ROOT CLASS OF COURSE
+//USE FIREBUG...ITS YOUR FRIEND...I PROMISE
+
+//gotta import this on any file that needs it
+//it is very useful in a lot of different ways
+//just go through and look at all the functions
+//and mixins available at your fingertips....
+//.....just look, dont be scared.
+@import 'mixins';
+
+//colors
+$yellow: 	 		color__rgba(255, 255, 0, 1);
+$teal:   	 		color__rgba(0, 173, 197, 1);
+$tealer: 			color__rbga(131, 194, 168, 1);
+$dark__gray: 		color__rgba(51, 51, 51, 1);
+$black:				color__rgba(0, 0, 0, 1);
+$orange:			color__rgba(243, 75, 1, 1);
+$sky__blue:			color__rgba(181, 241, 249, 1);
+$light__green:		color__rgba(189, 255, 217, 1);
+$green:				color__rgba(28, 173, 93, 1);
+$pale__green:		color__rgba(131,194,168,1);
+$red:				color__rgba(255, 0, 0, 1);
+$light__gray:		color__rgba(221, 221, 221, 1);
+$very__light__gray: color__rgba(238, 238, 238, 1);
+$medium_gray:		color__rgba(102, 102, 102, 1);
+$medium_light_gray: color__rgba(153, 153, 153, 1);
+$white:				color__rgba(255,255,255, 1);
+$royal__blue:		color__rgba(44, 84, 138, 1);
+
+//A
+.actions {
+	li {
+		a {
+			font-size:1.2em;
+			font-weight:300;
+		}
+	}
+	.edit {
+		a {
+			color:$black;
+		}
+	}
+	.verify {
+		a {
+			color:$green;
+		}
+	}
+	.verified {
+		a {
+			color:$red;
+		}
+	}
+	.verify.visible {
+		a {
+			i {
+				color:$green;
+			}
+		}
+	}
+	.verified.visible {
+		a {
+			i {
+				color:$red;
+			}
+		}
+	}
+}
+.action,.date {
+	strong {
+
+	}
+}
+
+.admin {
+	a {
+		color:$teal;
+	}
+}
+div.admin,div.basic,div.super {
+	span.user--box {
+		color:$white;
+	}
+}
+
+td.admin {
+	color:$teal;
+}
+td.super {
+	color:$orange;
+}
+td.basic {
+	color:$green;
+}
+
+
+//B
+.basic {
+	a {
+		color:$green;
+	}
+}
+.blur {
+	@include opacity(0.4);
+}
+body{
+	font-size:1em;
+	line-height:1.5;
+	letter-spacing:0;
+	//default font
+	font-family:'Ubuntu',sans-serif;
+	font-style:normal;
+	font-variant:normal;
+	font-weight:300;
+	a {
+		text-decoration: none;
+	}
+
+	p {
+		line-height:auto;
+		font-size:1em;
+	}
+}
+
+//C
+.close {
+	@include opacity(1);
+	i {
+		color:$red;
+	}
+}
+.concat_full {
+	text-align:center;
+}
+.content {
+	color:$dark__gray;
+}
+
+//D
+.dashboard {
+	h1 {
+		font-weight:300;
+		color: $white;
+		a {
+			color:$white;
+		}
+	}
+
+	h2 {
+		font-size:2em;
+		font-weight:300;
+		line-height:1.33333;
+	}
+
+	.site-title {
+		font-size:2.4em;
+		word-spacing:-0.15em;
+		color:$white;
+
+		span {
+			vertical-align:text-bottom;
+		}
+	}
+}
+.dataTables_length {
+	label {
+		text-align:left;
+	}
+}
+li.delete {
+	a {
+		i {
+			color:$red;
+		}
+	}
+}
+
+//E
+.error {
+	h2 {
+		color:$red;
+	}
+	p {
+		color:$black;
+	}
+	a.error_close {
+		color:$red;
+	}
+}
+
+//F
+.form-signin {
+	.checkbox {
+		font-weight:normal;
+	}
+	.form-control {
+		font-size:1em;
+	}
+}
+
+//I
+.item {
+	font-size:0.8em;
+}
+
+.item-box {
+	h5 {
+		color:$teal;
+		font-size:1em;
+		text-transform:uppercase;
+	}
+	h6 {
+		color:$orange;
+		font-size:.8em;
+		line-height:1.5em;
+	}
+}
+
+.item-actions {
+	text-align:right;
+
+	a.edit {
+		i {
+			color:$dark__gray;
+		}
+	}
+	a.verify {
+		i {
+			color:$green;
+		}
+	}
+	a.verified {
+		i {
+			color:$red;
+		}
+	}
+	a.delete {
+		i {
+			color:$red;
+		}
+	}
+}
+
+//M
+#main-nav {
+	font-family:'Ubuntu',sans-serif;
+}
+.matches_search {@include opacity(1)}
+
+//P
+.popup {
+	h2 {
+		color:$royal__blue;
+		text-transform:uppercase;
+		i{
+			color:$black;
+		}
+	}
+	> .close_window {
+		color:$medium_light_gray;
+		font-size:1.3em;
+		&:hover {
+			color:$black;
+			text-decoration:none;
+		}
+	}
+}
+
+//T
+.tab {
+	text-align:center;
+	@include text__shadow(1px, 1px, 1px, $light__gray);
+	font-size:1em;
+	&:hover {
+		color:$black;
+		text-decoration:none;
+	}
+}
+._table {
+	font-family:Ubuntu,sans-serif;
+	a {
+
+		&:hover {
+			color:$dark__gray;
+			text-decoration: none;
+
+			i {
+				color:$teal;
+			}
+		}
+	}
+	thead {
+		tr {
+			color:$black;
+
+			th {
+				color:$medium_gray;
+				font-weight:normal;
+				font-weight:300;
+				text-align: left;
+				i {
+					color:$teal;
+				}
+			}
+
+			th.user_type{}
+			th.name,th.address,th.comments {
+				color:$teal;
+			}
+			th.practice,th.phone {
+				color:$orange;
+			}
+
+		}
+	}
+
+	td {
+		vertical-align: middle;
+		color:$black;
+		font-weight:300;
+		text-align: left;
+		font-size:.8em;
+	}
+
+	tr {
+		color: $black;
+	}
+}
+
+.thanksbox {
+	h2 {
+		color:$green;
+	}
+	p {
+		color:$dark__gray;
+	}
+	a.thanks_close {
+		color:$green;
+	}
+}
+
+//S
+.subnav {
+	a {
+		font-size:.9em;
+		color:$dark__gray;
+		&:hover {
+			color:$teal;
+			text-decoration: none;
+		}
+	}
+}
+.super {
+	a {
+		color:$orange;
+	}
+}
+
+//U
+.user_activity {
+	font-size:0.8em;
+	> a.close {
+		@include opacity(1);
+		i {
+			color:$red;
+			@include opacity(1);
+		}
+	}
+	> h5 {
+		font-size:1.5em;
+		text-transform:uppercase;
+		color:$teal;
+	}
+}
+span.user--box {
+	text-align:center;
+}
+span.user--box--label {
+	color:$medium_light_gray;
+}
+.user-type {
+	span {
+		i {
+			color:$white;
+		}
+	}
+}
+.userWelcome {
+	color: $white;
+	text-align:right;
+	font-weight:300;
+	a {
+		color:$very__light__gray;
+		&:hover {
+			color:$black;
+			text-decoration:none;
+		}
+	}
+
+	span {
+		color:$yellow;
+	}
+}
+
+//V 
+a.verifiy {
+	i {
+		color:$green;
+	}
+}
+a.verified {
+	i {
+		color:$red;
+	}
+}
+.view-change {
+	a {
+		color:$white;
+		i {
+			color:$white;
+		}
+		&:hover {
+			color:$yellow;
+		}
+	}
+	a.active {
+		color:$yellow;
+	}
+}
